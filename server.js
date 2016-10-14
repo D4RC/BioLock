@@ -7,7 +7,7 @@ var myPort = new serialport(config.listener, {
     baudRate: config.baudRate,
     parser: serialport.parsers.readline("\r\n")
 });
-
+var unlock = require( './unlock' )( config.password );
 console.log("[BioLock]: Loading...");
 
 myPort.on('open', function(){
@@ -15,8 +15,12 @@ myPort.on('open', function(){
 });
 myPort.on('data', function(data){
     if(ready){
-        console.log("[BioLock]: Received data");
-        console.log("[BioLock]: " + data);
+        if(data === "4bbde12ff3880"){
+            console.log("[BioLock]: user authenticated");
+            unlock();
+        } else {
+            console.log("[BioLock]: User access denied");
+        }
     }
     if(!ready){
         console.log("[BioLock]: " + data);
