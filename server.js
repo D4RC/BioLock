@@ -7,8 +7,9 @@ var myPort = new serialport(config.listener, {
     baudRate: config.baudRate,
     parser: serialport.parsers.readline("\r\n")
 });
-var unlock = require( './unlock' )( config.password );
-var sleep = require('./screensaver');
+
+var unlock = require('./lib/unlockScript')(config.password);
+var sleep = require('./lib/sleepScript');
 console.log("[BioLock]: Loading...");
 
 myPort.on('open', function(){
