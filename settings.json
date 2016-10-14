@@ -1,5 +1,8 @@
 {
   "password": "Nogoldforu123!",
   "listener": "/dev/cu.usbmodem1411",
-  "baudRate": 115000
+  "baudRate": 115000,
+  "nfc": {
+  	"id": "4bbde12ff3880"
+  }
 }

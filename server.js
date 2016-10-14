@@ -15,9 +15,10 @@ console.log("[BioLock]: Loading...");
 myPort.on('open', function(){
         console.log("[BioLock]: Initalized, listening on [" + config.listener + "]");
 });
+
 myPort.on('data', function(data){
     if(ready){
-        if(data === "4bbde12ff3880"){
+        if(data === config.nfc.id){
             console.log("[BioLock]: user authenticated");
             unlock();
             console.log("[BioLock]: Mac has been unlocked");
