@@ -13,7 +13,6 @@ console.log("[BioLock]: Loading...");
 
 myPort.on('open', function(){
         console.log("[BioLock]: Initalized, listening on [" + config.listener + "]");
-        sleep();
 });
 myPort.on('data', function(data){
     if(ready){
@@ -30,6 +29,7 @@ myPort.on('data', function(data){
     }
     if(data === "done"){
         ready = true;
+        sleep();
     }
 });
 myPort.on('close', function(){
