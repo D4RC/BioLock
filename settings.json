@@ -1,4 +1,5 @@
 {
   "password": "Password",
   "listener": "COM5",
+  "baudRate": 115000
 }
