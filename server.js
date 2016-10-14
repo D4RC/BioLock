@@ -8,16 +8,19 @@ var myPort = new serialport(config.listener, {
     parser: serialport.parsers.readline("\r\n")
 });
 var unlock = require( './unlock' )( config.password );
+var sleep = require('./screensaver');
 console.log("[BioLock]: Loading...");
 
 myPort.on('open', function(){
         console.log("[BioLock]: Initalized, listening on [" + config.listener + "]");
+        sleep();
 });
 myPort.on('data', function(data){
     if(ready){
         if(data === "4bbde12ff3880"){
             console.log("[BioLock]: user authenticated");
             unlock();
+            console.log("[BioLock]: Mac has been unlocked");
         } else {
             console.log("[BioLock]: User access denied");
         }
